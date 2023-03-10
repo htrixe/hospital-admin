@@ -26,4 +26,10 @@ router.post( '/google',
     googleSignIn
 )
 
+router.get( '/renew',
+    validarJWT,
+    renewToken
+)
+
+
 module.exports = router;
