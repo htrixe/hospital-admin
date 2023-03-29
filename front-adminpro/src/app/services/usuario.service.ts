@@ -50,10 +50,10 @@ export class UsuarioService {
 
   googleInit() {
 
-    return new Promise<void>( resolve => {
+    return new Promise( resolve => {
       gapi.load('auth2', () => {
         this.auth2 = gapi.auth2.init({
-          client_id: '1060667077125-aju9i5gbpqirhbfme93epb2pfthknji1.apps.googleusercontent.com',
+          client_id: '1045072534136-oqkjcjvo449uls0bttgvl3aejelh22f5.apps.googleusercontent.com',
           cookiepolicy: 'single_host_origin',
         });
 
@@ -71,10 +71,6 @@ export class UsuarioService {
       this.ngZone.run(() => {
         this.router.navigateByUrl('/login');
       })
-    },
-    error => {
-      // TODO: Log error for now, will be handled when gaps updated
-      this.router.navigateByUrl('/login');
     });
 
   }

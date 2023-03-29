@@ -36,7 +36,7 @@ const crearHospital = async(req, res = response) => {
         console.log(error)
         res.status(500).json({
             ok: false,
-            msg: 'Fale com o administrador'
+            msg: 'Hable con el administrador'
         })
     }
     
@@ -79,7 +79,7 @@ const actualizarHospital = async (req, res = response) => {
 
         res.status(500).json({
             ok: false,
-            msg: 'fale com o administrador'
+            msg: 'Hable con el administrador'
         })
     }
 
@@ -97,7 +97,7 @@ const borrarHospital = async(req, res = response) => {
         if ( !hospital ) {
             return res.status(404).json({
                 ok: true,
-                msg: 'Hospital nao encontrado por id',
+                msg: 'Hospital no encontrado por id',
             });
         }
 
@@ -115,7 +115,7 @@ const borrarHospital = async(req, res = response) => {
 
         res.status(500).json({
             ok: false,
-            msg: 'Fale com o administrador'
+            msg: 'Hable con el administrador'
         })
     }
 }

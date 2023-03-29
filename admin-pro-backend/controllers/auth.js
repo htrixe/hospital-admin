@@ -48,52 +48,54 @@ const login = async( req, res = response ) => {
         })
     }
 
+
 }
+
 
 const googleSignIn = async( req, res = response ) => {
 
+    const googleToken = req.body.token;
+
     try {
-        const { email, name, picture } = await googleVerify( req.body.token );
+
+        const { name, email, picture } = await googleVerify( googleToken );
 
         const usuarioDB = await Usuario.findOne({ email });
         let usuario;
 
         if ( !usuarioDB ) {
+            // si no existe el usuario
             usuario = new Usuario({
                 nombre: name,
                 email,
                 password: '@@@',
                 img: picture,
                 google: true
-            })
+            });
         } else {
+            // existe usuario
             usuario = usuarioDB;
             usuario.google = true;
-            // usuario.password = '@@';
         }
 
-        // Guardar Usuario
+        // Guardar en DB
         await usuario.save();
 
         // Generar el TOKEN - JWT
         const token = await generarJWT( usuario.id );
-
-
+        
         res.json({
             ok: true,
-            email, name, picture,
             token
         });
-        
+
     } catch (error) {
-        console.log(error);
-        res.status(400).json({
+        
+        res.status(401).json({
             ok: false,
-            msg: 'Token de Google no es correcto'
+            msg: 'Token no es correcto',
         });
     }
-    
-
 
 }
 
